@@ -34,7 +34,7 @@ def register_Transported(db: Session, results: List[Dict[str, str]]):
         item = select_by_id(db=db, id=values[0])
         item.Transported = values[1]
         db.commit()
-        db.refresh(item)
+        # db.refresh(item)
     return results
 
 
@@ -49,11 +49,15 @@ def get_num_rows(db: Session) -> int:
     return db.query(table.Prediction).count()
 
 
-def get_true_and_prediction_col(db: Session, limit: int = 200) -> List[Tuple[str, str]]:
+def get_true_and_prediction_col(db: Session, limit: int = 200) -> List[Tuple[bool, bool]]:
     return (
         db.query(table.Prediction.Transported, table.Prediction.Transported_prediction)
-        .filter(table.Prediction.Transported != "")
+        .filter(table.Prediction.Transported != None)
         .order_by(table.Prediction.Date.desc())
         .limit(limit)
         .all()
     )
+
+
+def test(db: Session, limit: int = 200) -> List[Tuple[str, str]]:
+    return db.query(table.Prediction.Date).limit(limit).all()

@@ -21,7 +21,8 @@ def make_logger(path, name=None):
 
     # 6 handler 출력 format 지정
     file_handler.setFormatter(formatter)
-    stream_handler.setLevel(formatter)
+    stream_handler.setFormatter(formatter)
+
     # 7 logger에 handler 추가
     logger.addHandler(file_handler)
     logger.addHandler(stream_handler)

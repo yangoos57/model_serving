@@ -1,5 +1,14 @@
+import os
+
+url = os.getenv("DB_URL")
+user = os.getenv("MYSQL_USER")
+password = os.getenv("MYSQL_PASSWORD")
+
+print(user, password)
+
+
 class Deployment:
-    db_dir = "mysql+pymysql://root:1234@localhost:3307"
+    db_dir = f"mysql+pymysql://{user}:{password}@{url}:3306"
     db_name = "ML"
     columns = [
         "HomePlanet",
@@ -25,4 +34,5 @@ class Deployment:
 
 
 class Test:
-    db_dir = ""
+    db_dir = f"mysql+pymysql://{user}:{password}@{url}:3306"
+    db_name = "testML"

@@ -29,4 +29,4 @@ class Prediction(Base):
     Spa_cat = Column(BOOLEAN)
     VRDeck_cat = Column(BOOLEAN)
     Transported = Column(BOOLEAN)
-    Transported_prediction = Column(BOOLEAN)
+    Transported_prediction = Column(BOOLEAN, default="")
